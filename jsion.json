@@ -1,0 +1,54 @@
+{
+    "status": true,
+    "invoice": {
+    
+        "get_invoice_items": [
+            {
+                "id": 1250,
+                "invoice_id": "352",
+                "item_name": null,
+                "item_description": "Balance Forward",
+                "qbo_item": null,
+                "qbo_tax": null,
+                "quantity": 0,
+                "unit_price": 0,
+                "total_price": 502.55,
+                "currency": null,
+                "recon_data": null,
+                "created_at": "2023-10-17T06:47:57.000000Z",
+                "updated_at": "2023-10-17T06:47:57.000000Z"
+            },
+            {
+                "id": 1251,
+                "invoice_id": "352",
+                "item_name": null,
+                "item_description": "Payment",
+                "qbo_item": null,
+                "qbo_tax": null,
+                "quantity": 0,
+                "unit_price": 0,
+                "total_price": -502.55,
+                "currency": null,
+                "recon_data": null,
+                "created_at": "2023-10-17T06:47:57.000000Z",
+                "updated_at": "2023-10-17T06:47:57.000000Z"
+            },
+            {
+                "id": 1252,
+                "invoice_id": "352",
+                "item_name": null,
+                "item_description": "Invoice No.2675",
+                "qbo_item": null,
+                "qbo_tax": null,
+                "quantity": 0,
+                "unit_price": 0,
+                "total_price": 502.55,
+                "currency": null,
+                "recon_data": null,
+                "created_at": "2023-10-17T06:47:57.000000Z",
+                "updated_at": "2023-10-17T06:47:57.000000Z"
+            }
+        ]
+    },
+    "s3_file": "https:\/\/cribnote.s3.af-south-1.amazonaws.com\/months\/invoices\/314\/INV1832usii8txilttt6rec773pwatovk7ysnj2lreow6b6wqtxxd680yh23\/aeTzsipxw1nO45PToNxSBNgf4Q2WWo8nuNkHdbvd.pdf?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA2AFBFXUVCLLDU2F6%2F20231017%2Faf-south-1%2Fs3%2Faws4_request&X-Amz-Date=20231017T070718Z&X-Amz-SignedHeaders=host&X-Amz-Expires=60&X-Amz-Signature=fdd3509b71b24df836c5d451cda1c9e45ed318bbaedf8c0908bdba1a3868c9b4"
+}

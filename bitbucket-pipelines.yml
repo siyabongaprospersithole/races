@@ -1,0 +1,64 @@
+image: php:7.4
+
+pipelines:
+  default:
+    - parallel:
+        - step:
+            name: Install Backend Dependencies
+            script:
+              - apt-get update && apt-get install -y unzip
+              - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+              - php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+              - php -r "unlink('composer-setup.php');"
+              - composer install --no-progress --prefer-dist --ignore-platform-req=ext-zip --ignore-platform-req=ext-gd
+              - php artisan config:clear
+              - php artisan config:cache
+              - php artisan route:cache
+            caches:
+              - node
+              
+        - step:
+            name: Compile Vue.js
+            script:
+              - curl -sL https://deb.nodesource.com/setup_14.x | bash -
+              - apt-get install -y nodejs
+              - npm install --no-audit --no-fund
+              - npm run dev
+              - npm run prod
+            caches:
+              - node
+
+        - step:
+            name: Run Static Code Analysis
+            script:
+              - apt-get update && apt-get install -y unzip
+              - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+              - php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+              - php -r "unlink('composer-setup.php');"
+              - composer require --dev squizlabs/php_codesniffer --ignore-platform-req=ext-gd
+              - vendor/bin/phpcs --standard=PSR2 app/
+            caches:
+              - composer
+
+        - step:
+            name: Run Unit Tests
+            script:
+              - apt-get update && apt-get install -y unzip
+              - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+              - php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+              - php -r "unlink('composer-setup.php');"
+              - vendor/bin/phpunit
+            caches:
+              - composer
+
+        - step:
+            name: Check for Security Vulnerabilities
+            script:
+              - apt-get update && apt-get install -y unzip
+              - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+              - php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+              - php -r "unlink('composer-setup.php');"
+              - composer require --dev sensiolabs/security-checker --ignore-platform-req=ext-gd
+              - vendor/bin/security-checker security:check
+            caches:
+              - composer
